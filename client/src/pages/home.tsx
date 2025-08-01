@@ -158,7 +158,7 @@ export default function Home() {
           <div className="mt-12">
             <h3 className="text-lg font-semibold mb-4 text-blue-100">Trending Localities</h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {(trendingData?.localities || TRENDING_LOCALITIES[selectedCity] || []).map((locality) => (
+              {(trendingData?.localities || TRENDING_LOCALITIES[selectedCity as keyof typeof TRENDING_LOCALITIES] || []).map((locality: string) => (
                 <Link key={locality} href={`/search?city=${selectedCity}&locality=${locality}`}>
                   <Badge 
                     variant="secondary" 
@@ -240,7 +240,21 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredData?.properties?.map((property) => (
-                <PropertyCard key={property.id} property={property} />
+                <PropertyCard 
+                  key={property.id} 
+                  property={{
+                    id: property.id,
+                    name: property.name,
+                    locality: property.location?.locality || property.locality || '',
+                    city: property.location?.city || property.city || '',
+                    priceBand: property.priceBand,
+                    status: property.status,
+                    credibilityScore: property.credibilityScore || undefined,
+                    reraId: property.reraId || undefined,
+                    media: property.media || [],
+                    highlights: property.highlights || []
+                  }} 
+                />
               ))}
             </div>
           )}
@@ -342,7 +356,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {buildersData?.builders?.slice(0, 4).map((builder) => (
+              {(buildersData?.builders || []).slice(0, 4).map((builder: any) => (
                 <BuilderCard key={builder.id} builder={builder} />
               ))}
             </div>
