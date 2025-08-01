@@ -15,7 +15,7 @@ export function useProperties(filters?: SearchFilters) {
 
 export function useFeaturedProperties(limit?: number) {
   return useQuery<PropertiesResponse>({
-    queryKey: ['/api/properties/featured', { limit }],
+    queryKey: ['/api/properties/featured', limit],
     enabled: true,
   });
 }
@@ -36,14 +36,14 @@ export function useSearchProperties(query: string, filters?: SearchFilters) {
 
 export function useTrendingLocalities(city: string) {
   return useQuery<{ localities: string[] }>({
-    queryKey: ['/api/market/trending', { city }],
+    queryKey: ['/api/market/trending', city],
     enabled: !!city,
   });
 }
 
 export function useBuilders(filters?: { verified?: boolean }) {
   return useQuery({
-    queryKey: ['/api/builders', filters],
+    queryKey: ['/api/builders', filters?.verified ? 'verified' : 'all'],
     enabled: true,
   });
 }
@@ -57,7 +57,7 @@ export function useBuilder(id: string) {
 
 export function useMarketStats(geo: string, geoType: string) {
   return useQuery({
-    queryKey: ['/api/market/stats', { geo, geoType }],
+    queryKey: ['/api/market/stats', geo, geoType],
     enabled: !!geo && !!geoType,
   });
 }

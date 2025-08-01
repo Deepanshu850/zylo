@@ -89,9 +89,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/builders", async (req, res) => {
     try {
       const verified = req.query.verified === 'true' ? true : undefined;
-      const builders = await storage.getBuilders({ verified });
+      const filters = verified !== undefined ? { verified } : {};
+      const builders = await storage.getBuilders(filters);
       res.json({ builders });
     } catch (error) {
+      console.error('Builders endpoint error:', error);
       res.status(500).json({ error: "Failed to fetch builders" });
     }
   });
