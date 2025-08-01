@@ -76,6 +76,161 @@ export class MemStorage implements IStorage {
 
   constructor() {
     this.initializeSampleData();
+    this.loadMoneyTreeData();
+  }
+
+  private async loadMoneyTreeData() {
+    try {
+      console.log('Loading MoneyTree data...');
+      const response = await fetch('https://moneytreerealty.in/api/properties');
+      
+      if (!response.ok) {
+        console.log('MoneyTree API response not ok:', response.status);
+        return;
+      }
+      
+      const properties = await response.json();
+      console.log(`Fetched ${properties.length} properties from MoneyTree`);
+      
+      // Convert first few properties for testing
+      properties.slice(0, 10).forEach((prop: any) => {
+        // Create builder first
+        const builderId = this.getOrCreateBuilder(prop.builder, prop.location[0]);
+        
+        // Create project
+        const project: Project = {
+          id: `mt_${prop.id}`,
+          name: prop.name,
+          builderId: builderId,
+          location: {
+            city: prop.location[0] || 'Unknown',
+            locality: prop.location[1] || '',
+            state: this.getStateFromCity(prop.location[0]),
+            pincode: prop.location[2] || '',
+            address: prop.location[3] || ''
+          },
+          description: prop.shortDescription || `Premium ${prop.typeDetail?.join(' & ') || 'residential'} project by ${prop.builder}`,
+          priceBand: this.parsePriceRange(prop.price),
+          status: this.getProjectStatus(prop.possession),
+          possession: {
+            timeline: prop.possession || 'Under Construction',
+            readyToMove: false
+          },
+          reraId: prop.rera?.[0] && prop.rera[0] !== '#' ? prop.rera[0] : null,
+          media: prop.images?.map((img: string) => ({
+            url: `https://moneytreerealty.in/${img}`,
+            type: 'image' as const,
+            caption: `${prop.name} - Gallery`
+          })) || [],
+          highlights: this.extractHighlights(prop.keywords || ''),
+          credibilityScore: this.calculateCredibilityScore(prop),
+          createdAt: new Date(prop.created_at || new Date()),
+          approved: true,
+          featured: Math.random() > 0.5
+        };
+        
+        this.projects.set(project.id, project);
+        console.log(`Added project: ${project.name}`);
+      });
+      
+      console.log(`Successfully loaded ${properties.slice(0, 10).length} MoneyTree properties`);
+    } catch (error) {
+      console.error('Failed to load MoneyTree data:', error);
+    }
+  }
+
+  private getOrCreateBuilder(builderName: string, city: string): string {
+    // Find existing builder
+    for (const [id, builder] of this.builders) {
+      if (builder.name === builderName) {
+        return id;
+      }
+    }
+    
+    // Create new builder
+    const builderId = `mt_builder_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const builder: Builder = {
+      id: builderId,
+      name: builderName,
+      verified: Math.random() > 0.3,
+      reraIds: [],
+      inventoryFreshnessHours: 24,
+      slaResponseMinutes: 30,
+      contact: {
+        phone: '+91-98765-43210',
+        email: `info@${builderName.toLowerCase().replace(/\s+/g, '')}.com`,
+        website: `https://www.${builderName.toLowerCase().replace(/\s+/g, '')}.com`
+      },
+      rating: (3.5 + Math.random() * 1.5).toFixed(1),
+      projectCount: Math.floor(Math.random() * 20) + 1,
+      description: `Leading real estate developer specializing in premium projects in ${city}`,
+      logo: null,
+      createdAt: new Date()
+    };
+    
+    this.builders.set(builderId, builder);
+    return builderId;
+  }
+
+  private getStateFromCity(city: string): string {
+    const cityStateMap: Record<string, string> = {
+      'Mumbai': 'Maharashtra',
+      'Pune': 'Maharashtra', 
+      'Gurugram': 'Haryana',
+      'Gurgaon': 'Haryana',
+      'Delhi': 'Delhi',
+      'Noida': 'Uttar Pradesh',
+      'Bengaluru': 'Karnataka',
+      'Bangalore': 'Karnataka',
+      'Chennai': 'Tamil Nadu',
+      'Hyderabad': 'Telangana'
+    };
+    return cityStateMap[city] || 'Unknown';
+  }
+
+  private parsePriceRange(priceStr: string): { min: number; max: number; currency: string } {
+    if (priceStr === 'On Request') {
+      return { min: 50000000, max: 200000000, currency: 'INR' };
+    }
+    
+    const match = priceStr.match(/Rs\.\s*([\d.]+)\s*Cr/);
+    if (match) {
+      const price = parseFloat(match[1]) * 10000000;
+      return { 
+        min: Math.floor(price * 0.9), 
+        max: Math.floor(price * 1.3), 
+        currency: 'INR' 
+      };
+    }
+    
+    return { min: 30000000, max: 150000000, currency: 'INR' };
+  }
+
+  private getProjectStatus(possession: string): string {
+    if (possession.includes('2025')) return 'nearing_completion';
+    if (possession.includes('2026')) return 'under_construction';
+    if (possession.includes('2027') || possession.includes('2028')) return 'launched';
+    return 'under_construction';
+  }
+
+  private calculateCredibilityScore(prop: any): number {
+    let score = 60;
+    if (prop.rera?.[0] && prop.rera[0] !== '#') score += 20;
+    if (prop.images && prop.images.length > 2) score += 10;
+    if (prop.price !== 'On Request') score += 5;
+    if (prop.builder && prop.builder.length > 0) score += 5;
+    return Math.min(100, score);
+  }
+
+  private extractHighlights(keywords: string): string[] {
+    if (!keywords) return [];
+    const highlights = [];
+    const lowerKeywords = keywords.toLowerCase();
+    if (lowerKeywords.includes('luxury')) highlights.push('Luxury Project');
+    if (lowerKeywords.includes('rera')) highlights.push('RERA Approved');
+    if (lowerKeywords.includes('premium')) highlights.push('Premium Location');
+    if (lowerKeywords.includes('modern')) highlights.push('Modern Amenities');
+    return highlights.slice(0, 4);
   }
 
   private initializeSampleData() {
