@@ -1,0 +1,72 @@
+[
+  {
+    "id": 64,
+    "name": "Origin Claremont",
+    "link": "origin-claremont-mumbai",
+    "builder": "Origin Corp",
+    "location": [
+      "Mumbai",
+      "Gokuldham Colony, Goregaon East",
+      "400063",
+      "General Arun Kumar Vaidya Marg / Western Express Highway"
+    ],
+    "images": [
+      "assets/img/projectdetails/originclaremont1.webp",
+      "assets/img/projectdetails/originclaremont2.webp",
+      "assets/img/projectdetails/originclaremont3.webp"
+    ],
+    "price": "Rs. 2.16 Cr*",
+    "possession": "December 2030",
+    "area": null,
+    "type": [
+      "Residential"
+    ],
+    "typeDetail": [
+      "2 BHK flats",
+      "3 BHK flats"
+    ],
+    "rera": [
+      "P51800056047",
+      "#"
+    ],
+    "shortDescription": null,
+    "keywords": "Origin Claremont, Goregaon East homes, 3 BHK Flats in Goregaon, 4 BHK Flats in Goregaon, luxury flats Mumbai, premium apartments Goregaon, standalone project Mumbai, family Apartments Mumbai, flats with views, RERA approved flats, Claremont price list, Claremont floor plan, Goregaon East property, new launch Mumbai, Mumbai luxury apartments, modern apartments Goregaon, best apartments for family, real estate Goregaon, peaceful living Mumbai, buy flat in Goregaon, real estate Mumbai",
+    "created_at": "2025-07-02T11:11:46.000000Z",
+    "updated_at": "2025-07-03T14:01:53.000000Z"
+  },
+  {
+    "id": 63,
+    "name": "Signature Global Titanium SPR",
+    "link": "signature-global-titanium-spr",
+    "builder": "Signature Global",
+    "location": [
+      "Gurugram",
+      "Sector 71, Golf Course Extension Road",
+      "122004",
+      "Golf Course Extension Road"
+    ],
+    "images": [
+      "assets/img/projectdetails/signatureglobaltitaniumspr1.webp",
+      "assets/img/projectdetails/signatureglobaltitaniumspr2.webp",
+      "assets/img/projectdetails/signatureglobaltitaniumspr3.webp"
+    ],
+    "price": "On Request",
+    "possession": "February 2031",
+    "area": null,
+    "type": [
+      "Residential"
+    ],
+    "typeDetail": [
+      "3 BHK flats",
+      "4 BHK flats"
+    ],
+    "rera": [
+      "GGM/831/563/2024/58",
+      "https://haryanarera.gov.in/view_project/searchprojectDetail/2936"
+    ],
+    "shortDescription": null,
+    "keywords": "Luxury 3 & 4 BHK Flats in Gurgaon, signature global titanium, signature global spr, Global Titanium SPR, Buy 4BHK Apartments in Gurgaon, Signature global titanium sector 71, 4 bhk apartments in gurgaon, signature titanium sector 71, signature global titanium gurugram, 4 BHK Flats in Gurgaon ,luxury apartment in gurgaon, luxury homes in Gurugram, Luxurious Flats, 3.5/4.5 BHK Flats in Gurugram, Luxury properties in Gurgaon, Luxury Floors in Gurgaon, Luxury Properties in Gurgaon, Affordable Flats in Gurugram, best real estate website in Gurgaon, Luxury 3 BHK Flats in Gurgaon, Luxury 4 BHK Flats in Gurgaon, 3.5 BHK Flats in Gurgaon, 4.5 BHK Flats in Gurgaon, Flats in Gurgaon, Apartments in Gurgaon",
+    "created_at": "2025-07-02T11:09:15.000000Z",
+    "updated_at": "2025-07-03T13:45:08.000000Z"
+  },
+  {

@@ -3,8 +3,12 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { searchFiltersSchema, aiQuerySchema } from "@shared/schema";
 import { processPropertyQuery, analyzePropertyComparison, generateMarketInsights } from "./services/openai";
+import moneyTreeRoutes from "./routes/moneytree";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // MoneyTree integration routes
+  app.use("/api/moneytree", moneyTreeRoutes);
   
   // Properties endpoints
   app.get("/api/properties", async (req, res) => {
@@ -21,6 +25,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const limit = req.query.limit ? parseInt(req.query.limit as string) : 10;
       const properties = await storage.getFeaturedProjects(limit);
+      
+      // If no properties found, try to sync from MoneyTree
+      if (properties.length === 0) {
+        console.log('No featured properties found, attempting MoneyTree sync...');
+        // This would trigger background sync in production
+      }
+      
       res.json({ properties });
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch featured properties" });
