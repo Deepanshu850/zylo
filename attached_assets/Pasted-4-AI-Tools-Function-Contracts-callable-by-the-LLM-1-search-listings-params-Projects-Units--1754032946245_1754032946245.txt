@@ -1,0 +1,74 @@
+4) AI Tools / Function Contracts (callable by the LLM)
+	1.	search_listings(params) → Projects/Units.
+	2.	resolve_conflicts(project_id) → discrepancies, resolution notes, updated credibility score.
+	3.	validate_media(project_id) → CV verdicts + confidence.
+	4.	generate_virtual_tour(project_id|media[]) → 3D/VR link + cover.
+	5.	virtual_stage(media[], style) → staged gallery.
+	6.	market_insights(geo, horizon) → trends, forecast JSON.
+	7.	avm(project_id|unit_id, comps[]) → value range + adjustments + confidence.
+	8.	roi_scenarios(unit_id|inputs) → appreciation, yield, IRR (bull/base/bear).
+	9.	legal_diligence_upload(files[]) → OCR, entities, risk flags, summary.
+	10.	compare(property_ids[], buyer_goals) → ranked table + plain-English verdict.
+	11.	rera_lookup(project|rera_id) → filings, status, alerts.
+	12.	schedule_visit(project_id, slots[]) → confirm slot + WhatsApp/SMS.
+	13.	negotiate_offer(builder_id|project_id|unit_id, target_terms) → counter-offer JSON with guardrails.
+	14.	escrow_initiate(lead_id, amount, purpose) → escrow link/status.
+	15.	kyc_esign(lead_id, docs[]) → KYC result + e-sign link.
+	16.	summarize_for_pdf(entity_id, audience) → print-ready report.
+	17.	ask_anything(query, scope) → RAG over listings, docs, insights, offers.
+
+All tools return strict JSON with status, data, sources, confidence, disclaimer.
+
+⸻
+
+5) The 8 Pain-Point Solutions (Implemented)
+	1.	Unified, Verified Listings with Credibility Score (0–100), verified badges, source/tooltips.
+	2.	Faster Search & Fewer Site Visits: AI ranking, 3D/VR tours, virtual staging, smart visit scheduling.
+	3.	Conflict Detection: banner + “See why” diff + resolution rationale.
+	4.	Market Intelligence: trend charts, heat maps, 5-yr forecasts, natural-language Q&A.
+	5.	Unbiased Advisory: explainable recos, pros/cons/risks; multi-language; tone by persona.
+	6.	Legal & Title: OCR → summary → risk flags → RERA deep links → checklist.
+	7.	Smart Comparison: weighted scoring by buyer goals + plain-English winner.
+	8.	Valuation & ROI: AVM ranges, comps, photo-condition adjustments, scenario planner, PDF export.
+
+⸻
+
+6) Direct-to-Builder Enhancements (Zylo)
+	•	Builder verification (RERA + identity + historical delivery).
+	•	Live inventory & pricing via builder feeds; offer engine (public/private).
+	•	Negotiation bot with guardrails (no illegal inducements; respect RERA ad rules).
+	•	Transparent commission calculator shown to user (where applicable).
+	•	Escrowed token payments, digital KYC, e-sign for booking forms.
+	•	SLAs: builder response ≤ 30 min, visit confirmation ≤ 2 hours; SLA badges on profile.
+	•	“Chat with Builder” + “Request Virtual Site Visit” actions.
+
+⸻
+
+7) Multilingual & Accessibility
+	•	Full UX in English/Hindi/Hinglish with SEO-friendly routes.
+	•	Alt text, keyboard nav, data tables for charts.
+
+⸻
+
+8) Trust, Compliance, Safety
+	•	Show data freshness, sources, and disclaimers on every card.
+	•	Do not fabricate approvals/prices; show ranges + assumptions.
+	•	RERA compliance notices; PII masking; consent logging; audit trail.
+	•	Virus scan uploads; watermark staged images; rate limits.
+
+⸻
+
+9) Performance, SEO, Analytics
+	•	SSR for public pages; Lighthouse ≥ 90; WebP/AVIF; lazy media.
+	•	Schema.org (Place, Residence, Offer, Organization).
+	•	Track funnels: search → compare → AVM → negotiate → token → visit → book.
+
+⸻
+
+10) Admin & Builder Consoles
+	•	Admin: source health, conflict queue, overrides with audit, media CV flags, RERA sync, banners.
+	•	Builder: manage inventory/pricing/offers, respond to leads, schedule visits, export reports, SLA metrics.
+
+⸻
+
+11) Zylo AI Assistant — System Prompt

@@ -1,0 +1,42 @@
+MASTER BUILD PROMPT — “ZyloEstates: AI-First Direct-to-Builder Real Estate Platform (Tier-1 India)”
+
+Goal:
+Build a production-ready, multilingual (English/Hinglish/Hindi) platform that connects buyers directly with builders, eliminates information asymmetry, compresses search time, and delivers investor-grade analysis with transparent pricing and compliant transactions.
+
+Brand Tenets (use across UX and tone):
+	•	Direct. Transparent. Trusted.
+	•	Lower commissions, faster booking, verified data.
+	•	Explainable AI, no hard sell, clear disclaimers.
+
+⸻
+
+1) Information Architecture & UX
+
+Primary flows: City → Locality → Project → Unit → Compare → Valuation → Due Diligence → Negotiate → Token/Booking → Visit → Handover.
+
+Core pages/components:
+	•	Home: city cards, smart search, trending localities, “Direct Builder Deals”.
+	•	Search (map+list): filters (price, BHK, carpet, possession, RERA, builder, amenities, verified-only).
+	•	Project page: verified gallery, floor plans, price band, RERA box, timeline, connectivity map, Credibility Score, Direct-to-Builder CTA.
+	•	Unit detail: specs, payment plan, AVM value range, rent yield, 5-yr forecast, “Negotiate with Builder”.
+	•	AI Comparison Dashboard: side-by-side table + AI verdict by buyer priorities.
+	•	Market Intelligence: trends, heat maps, 5-yr forecast, Q&A.
+	•	Legal & Title: doc upload → OCR summary → risk flags → RERA links.
+	•	Shortlist: save, notes, share, export PDF.
+	•	Book/Visit: calendar slots (builder & site), WhatsApp/SMS fallback, token payment.
+	•	Builder Profiles: verified badges, inventory freshness, SLAs, exclusive offers.
+
+UI essentials: sticky compare bar, conflict banner, verified watermarks, credibility tooltip (“why verified”), PDF export for AVM/Compare/Legal.
+
+⸻
+
+2) Data Sources & ETL
+
+Connectors: RERA portals, city registries, builder feeds (inventory/pricing/offers), permitted listing APIs, POI/Maps.
+Nightly + on-demand ETL: fetch → validate → normalize → dedupe → enrich → index.
+De-dup keys: {builder_id, rera_id, project_name_fuzzy, lat_lng_round, floorplan_hash}.
+Media trust: CV to detect AI/stock/manipulation; score & flag.
+
+⸻
+
+3) Canonical Schemas (JSON)
