@@ -1,0 +1,1310 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZyloEstates - Direct-to-Builder Real Estate Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        'primary-dark': '#1e40af',
+                        success: '#059669',
+                        warning: '#f59e0b',
+                        danger: '#dc2626',
+                        accent: '#8b5cf6'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'Noto Sans Devanagari', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- @COMPONENT: Header [navigation, search, language toggle] -->
+    <header class="bg-white shadow-sm border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-8">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-home text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-900">ZyloEstates</span>
+                        <span class="bg-success text-white text-xs px-2 py-1 rounded-full">VERIFIED</span>
+                    </div>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="#" class="text-gray-700 hover:text-primary font-medium">Buy</a>
+                        <a href="#" class="text-gray-700 hover:text-primary font-medium">Projects</a>
+                        <a href="#" class="text-gray-700 hover:text-primary font-medium">Builders</a>
+                        <a href="#" class="text-gray-700 hover:text-primary font-medium">Market Intel</a>
+                        <a href="#" class="text-gray-700 hover:text-primary font-medium">Legal Check</a>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <select class="text-sm border border-gray-300 rounded-md px-3 py-1">
+                        <option>English</option>
+                        <option>हिंदी</option>
+                        <option>Hinglish</option>
+                    </select>
+                    <div class="relative">
+                        <button class="bg-gray-100 p-2 rounded-lg relative">
+                            <i class="fas fa-heart text-gray-600"></i>
+                            <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                        </button>
+                    </div>
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-dark">
+                        <i class="fas fa-user mr-2"></i>Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: HeroSearch [city selection, smart search, trending localities] -->
+    <section class="bg-gradient-to-br from-primary to-primary-dark text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                Direct से Builder से Property ख़रीदें
+            </h1>
+            <p class="text-xl mb-8 text-blue-100">
+                Zero Brokerage • AI Verified Listings • Transparent Pricing • RERA Compliant
+            </p>
+
+            <!-- Smart Search Bar -->
+            <div class="bg-white rounded-2xl p-6 shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                    <div class="relative">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>Mumbai</option>
+                            <option>Delhi NCR</option>
+                            <option>Bangalore</option>
+                            <option>Chennai</option>
+                            <option>Hyderabad</option>
+                            <option>Pune</option>
+                        </select>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Budget</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>₹50L - ₹1Cr</option>
+                            <option>₹1Cr - ₹2Cr</option>
+                            <option>₹2Cr - ₹5Cr</option>
+                            <option>₹5Cr+</option>
+                        </select>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">BHK</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>1 BHK</option>
+                            <option>2 BHK</option>
+                            <option>3 BHK</option>
+                            <option>4+ BHK</option>
+                        </select>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Property Type</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>Apartment</option>
+                            <option>Villa</option>
+                            <option>Studio</option>
+                            <option>Penthouse</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg w-full md:w-auto">
+                    <i class="fas fa-search mr-2"></i>Search Properties
+                </button>
+            </div>
+
+            <!-- Trending Localities -->
+            <div class="mt-12">
+                <h3 class="text-lg font-semibold mb-4 text-blue-100">Trending Localities</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full cursor-pointer hover:bg-white/30 transition-colors">Bandra West</span>
+                    <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full cursor-pointer hover:bg-white/30 transition-colors">Gurgaon Sector 84</span>
+                    <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full cursor-pointer hover:bg-white/30 transition-colors">Whitefield</span>
+                    <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full cursor-pointer hover:bg-white/30 transition-colors">OMR Chennai</span>
+                    <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full cursor-pointer hover:bg-white/30 transition-colors">Hinjewadi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSearch -->
+
+    <!-- @COMPONENT: TrustIndicators [key metrics, verified listings count] -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-3xl font-bold text-primary">15,000+</div>
+                    <div class="text-gray-600 mt-1">Verified Properties</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-success">500+</div>
+                    <div class="text-gray-600 mt-1">Certified Builders</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-warning">₹0</div>
+                    <div class="text-gray-600 mt-1">Brokerage Fee</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-accent">24 hrs</div>
+                    <div class="text-gray-600 mt-1">Avg Response Time</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: TrustIndicators -->
+
+    <!-- @COMPONENT: FeaturedProjects [project cards with credibility scores, verified badges] -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Direct Builder Properties</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    AI-verified listings with transparent pricing and guaranteed authenticity
+                </p>
+            </div>
+
+            <!-- Filters Bar -->
+            <div class="flex flex-wrap gap-4 mb-8 p-4 bg-white rounded-lg shadow-sm">
+                <button class="flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg">
+                    <i class="fas fa-filter"></i>
+                    <span>All Filters</span>
+                </button>
+                <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Ready to Move</button>
+                <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">RERA Approved</button>
+                <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Premium Builders</button>
+                <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Verified Photos</button>
+                <div class="ml-auto flex items-center space-x-2">
+                    <span class="text-sm text-gray-600">Sort by:</span>
+                    <select class="border border-gray-300 rounded-lg px-3 py-2">
+                        <option>Credibility Score</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest First</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Property Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- @MAP: projects.map(project => ( -->
+                
+                <!-- Property Card 1 -->
+                <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+                    <div class="relative">
+                        <!-- Modern residential complex with glass facade and landscaped gardens -->
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                             alt="Luxury residential complex" class="w-full h-48 object-cover" />
+                        <div class="absolute top-4 left-4 flex space-x-2">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full flex items-center">
+                                <i class="fas fa-check-circle mr-1"></i>VERIFIED
+                            </span>
+                            <span class="bg-primary text-white text-xs px-2 py-1 rounded-full">RERA APPROVED</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <div class="bg-white rounded-full p-2 shadow-lg">
+                                <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 right-4">
+                            <div class="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 bg-success rounded-full flex items-center justify-center">
+                                        <span class="text-white text-xs font-bold">92</span>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700">Credibility</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Prestige Lakeside Habitat</h3>
+                                <p class="text-gray-600 text-sm flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-1"></i>Whitefield, Bangalore
+                                </p>
+                            </div>
+                            <button class="text-primary hover:text-primary-dark">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="text-2xl font-bold text-gray-900">₹1.2Cr</span>
+                            <span class="text-sm text-gray-500">onwards</span>
+                            <span class="bg-success/10 text-success text-xs px-2 py-1 rounded-full">5% below market</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">2-3 BHK</div>
+                                <div class="text-xs text-gray-600">Configuration</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">1200-1800</div>
+                                <div class="text-xs text-gray-600">Sq.ft</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">Dec 2025</div>
+                                <div class="text-xs text-gray-600">Possession</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs text-gray-600">Builder:</span>
+                                <span class="text-xs font-medium text-gray-900">Prestige Group</span>
+                                <i class="fas fa-check-circle text-success text-xs"></i>
+                            </div>
+                            <div class="text-xs text-gray-500">Updated 2 hrs ago</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg text-sm font-medium">
+                                Contact Builder
+                            </button>
+                            <button class="border border-primary text-primary hover:bg-primary hover:text-white py-2 px-4 rounded-lg text-sm font-medium">
+                                Virtual Tour
+                            </button>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <div class="flex justify-between text-xs text-gray-600">
+                                <span>ROI: 12.5% p.a.</span>
+                                <span>Rent Yield: 3.2%</span>
+                                <span>RERA: PRM/KA/RERA/1251/309</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Card 2 -->
+                <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+                    <div class="relative">
+                        <!-- Modern high-rise apartment building with city skyline view -->
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                             alt="High-rise apartment complex" class="w-full h-48 object-cover" />
+                        <div class="absolute top-4 left-4 flex space-x-2">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full flex items-center">
+                                <i class="fas fa-check-circle mr-1"></i>VERIFIED
+                            </span>
+                            <span class="bg-warning text-white text-xs px-2 py-1 rounded-full">EXCLUSIVE OFFER</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <div class="bg-white rounded-full p-2 shadow-lg">
+                                <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 right-4">
+                            <div class="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 bg-warning rounded-full flex items-center justify-center">
+                                        <span class="text-white text-xs font-bold">88</span>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700">Credibility</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">DLF Privana South</h3>
+                                <p class="text-gray-600 text-sm flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-1"></i>Sector 77, Gurgaon
+                                </p>
+                            </div>
+                            <button class="text-primary hover:text-primary-dark">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="text-2xl font-bold text-gray-900">₹2.8Cr</span>
+                            <span class="text-sm text-gray-500">onwards</span>
+                            <span class="bg-danger/10 text-danger text-xs px-2 py-1 rounded-full">2% above market</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">3-4 BHK</div>
+                                <div class="text-xs text-gray-600">Configuration</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">1800-2500</div>
+                                <div class="text-xs text-gray-600">Sq.ft</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">Ready</div>
+                                <div class="text-xs text-gray-600">Possession</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs text-gray-600">Builder:</span>
+                                <span class="text-xs font-medium text-gray-900">DLF Limited</span>
+                                <i class="fas fa-check-circle text-success text-xs"></i>
+                            </div>
+                            <div class="text-xs text-gray-500">Updated 4 hrs ago</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg text-sm font-medium">
+                                Contact Builder
+                            </button>
+                            <button class="border border-primary text-primary hover:bg-primary hover:text-white py-2 px-4 rounded-lg text-sm font-medium">
+                                Schedule Visit
+                            </button>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <div class="flex justify-between text-xs text-gray-600">
+                                <span>ROI: 8.5% p.a.</span>
+                                <span>Rent Yield: 2.8%</span>
+                                <span>RERA: RC/REP/HARERA/GGM/766/499</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Card 3 -->
+                <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+                    <div class="relative">
+                        <!-- Luxury villa complex with pool and modern architecture -->
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                             alt="Luxury villa complex" class="w-full h-48 object-cover" />
+                        <div class="absolute top-4 left-4 flex space-x-2">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full flex items-center">
+                                <i class="fas fa-check-circle mr-1"></i>VERIFIED
+                            </span>
+                            <span class="bg-accent text-white text-xs px-2 py-1 rounded-full">PREMIUM</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <div class="bg-white rounded-full p-2 shadow-lg">
+                                <i class="fas fa-heart text-red-500 cursor-pointer"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 right-4">
+                            <div class="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                                        <span class="text-white text-xs font-bold">95</span>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700">Credibility</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Godrej Reserve</h3>
+                                <p class="text-gray-600 text-sm flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-1"></i>Kandivali East, Mumbai
+                                </p>
+                            </div>
+                            <button class="text-primary hover:text-primary-dark">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="text-2xl font-bold text-gray-900">₹3.5Cr</span>
+                            <span class="text-sm text-gray-500">onwards</span>
+                            <span class="bg-success/10 text-success text-xs px-2 py-1 rounded-full">At market price</span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">4-5 BHK</div>
+                                <div class="text-xs text-gray-600">Configuration</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">2200-3000</div>
+                                <div class="text-xs text-gray-600">Sq.ft</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-2">
+                                <div class="text-sm font-semibold text-gray-900">Mar 2026</div>
+                                <div class="text-xs text-gray-600">Possession</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-1">
+                                <span class="text-xs text-gray-600">Builder:</span>
+                                <span class="text-xs font-medium text-gray-900">Godrej Properties</span>
+                                <i class="fas fa-check-circle text-success text-xs"></i>
+                            </div>
+                            <div class="text-xs text-gray-500">Updated 1 hr ago</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg text-sm font-medium">
+                                Contact Builder
+                            </button>
+                            <button class="border border-primary text-primary hover:bg-primary hover:text-white py-2 px-4 rounded-lg text-sm font-medium">
+                                Get AVM Report
+                            </button>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <div class="flex justify-between text-xs text-gray-600">
+                                <span>ROI: 15.2% p.a.</span>
+                                <span>Rent Yield: 4.1%</span>
+                                <span>RERA: P51700000652</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP -->
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-12">
+                <button class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 rounded-lg font-medium">
+                    Load More Properties
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FeaturedProjects -->
+
+    <!-- @COMPONENT: AIComparisonTool [property comparison with AI insights] -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">AI-Powered Property Comparison</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Compare properties side-by-side with AI insights and get personalized recommendations
+                </p>
+            </div>
+
+            <div class="bg-gray-50 rounded-2xl p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Property 1 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <div class="text-center mb-4">
+                            <!-- Modern apartment with city view from balcony -->
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                 alt="Modern apartment interior" class="w-full h-32 object-cover rounded-lg mb-3" />
+                            <h3 class="font-semibold text-gray-900">Prestige Lakeside</h3>
+                            <p class="text-sm text-gray-600">Whitefield, Bangalore</p>
+                            <div class="text-lg font-bold text-primary mt-2">₹1.2Cr</div>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Carpet Area</span>
+                                <span class="font-medium">1200 sq.ft</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Price/sq.ft</span>
+                                <span class="font-medium">₹10,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">ROI Projection</span>
+                                <span class="font-medium text-success">12.5%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Credibility</span>
+                                <span class="flex items-center">
+                                    <div class="w-6 h-6 bg-success rounded-full flex items-center justify-center mr-2">
+                                        <span class="text-white text-xs font-bold">92</span>
+                                    </div>
+                                    <span class="text-sm">Excellent</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VS Indicator -->
+                    <div class="flex items-center justify-center">
+                        <div class="bg-primary rounded-full w-16 h-16 flex items-center justify-center">
+                            <span class="text-white font-bold">VS</span>
+                        </div>
+                    </div>
+
+                    <!-- Property 2 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <div class="text-center mb-4">
+                            <!-- Luxury penthouse with modern amenities -->
+                            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                 alt="Luxury penthouse interior" class="w-full h-32 object-cover rounded-lg mb-3" />
+                            <h3 class="font-semibold text-gray-900">DLF Privana South</h3>
+                            <p class="text-sm text-gray-600">Sector 77, Gurgaon</p>
+                            <div class="text-lg font-bold text-primary mt-2">₹2.8Cr</div>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Carpet Area</span>
+                                <span class="font-medium">1800 sq.ft</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Price/sq.ft</span>
+                                <span class="font-medium">₹15,555</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">ROI Projection</span>
+                                <span class="font-medium text-warning">8.5%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Credibility</span>
+                                <span class="flex items-center">
+                                    <div class="w-6 h-6 bg-warning rounded-full flex items-center justify-center mr-2">
+                                        <span class="text-white text-xs font-bold">88</span>
+                                    </div>
+                                    <span class="text-sm">Very Good</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Recommendation -->
+                <div class="mt-8 bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-primary rounded-full p-2">
+                            <i class="fas fa-robot text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-900 mb-2">AI Recommendation</h4>
+                            <p class="text-gray-700 mb-4">
+                                Based on your budget preference of ₹1-2Cr and investment goals, <strong>Prestige Lakeside</strong> offers better value with higher ROI (12.5% vs 8.5%) and superior credibility score. However, DLF Privana offers larger space in a prime location.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-white rounded-lg p-4">
+                                    <h5 class="font-medium text-success mb-2">✅ Better for Investment</h5>
+                                    <p class="text-sm text-gray-600">Prestige Lakeside - Higher ROI, better price/sq.ft ratio</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <h5 class="font-medium text-primary mb-2">🏠 Better for Living</h5>
+                                    <p class="text-sm text-gray-600">DLF Privana - Larger space, premium location, ready possession</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6">
+                    <button class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg font-medium">
+                        <i class="fas fa-download mr-2"></i>Download Detailed Comparison Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: AIComparisonTool -->
+
+    <!-- @COMPONENT: MarketIntelligence [trends, charts, insights] -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Market Intelligence</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Real-time market trends and AI-powered insights for informed decision making
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Price Trends Chart -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900">Price Trends</h3>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 bg-primary text-white rounded-lg text-sm">1Y</button>
+                            <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg text-sm">6M</button>
+                            <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg text-sm">3M</button>
+                        </div>
+                    </div>
+                    <div class="h-64 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-chart-line text-4xl text-primary mb-4"></i>
+                            <p class="text-gray-600">Interactive Price Trend Chart</p>
+                            <p class="text-sm text-gray-500 mt-2">Bangalore: +12.5% YoY Growth</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-6 text-center">
+                        <div>
+                            <div class="text-lg font-bold text-success">+12.5%</div>
+                            <div class="text-xs text-gray-600">YoY Growth</div>
+                        </div>
+                        <div>
+                            <div class="text-lg font-bold text-primary">₹6,850</div>
+                            <div class="text-xs text-gray-600">Avg Price/sq.ft</div>
+                        </div>
+                        <div>
+                            <div class="text-lg font-bold text-warning">8.2%</div>
+                            <div class="text-xs text-gray-600">Price Appreciation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Heat Map -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900">Locality Heat Map</h3>
+                        <select class="border border-gray-300 rounded-lg px-3 py-2">
+                            <option>Bangalore</option>
+                            <option>Mumbai</option>
+                            <option>Delhi NCR</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-gradient-to-r from-success/20 to-success/40 rounded-lg p-4 text-center">
+                            <div class="font-semibold text-gray-900">Whitefield</div>
+                            <div class="text-sm text-gray-600">Hot Market</div>
+                            <div class="text-lg font-bold text-success mt-1">+15.2%</div>
+                        </div>
+                        <div class="bg-gradient-to-r from-warning/20 to-warning/40 rounded-lg p-4 text-center">
+                            <div class="font-semibold text-gray-900">Electronic City</div>
+                            <div class="text-sm text-gray-600">Moderate</div>
+                            <div class="text-lg font-bold text-warning mt-1">+8.7%</div>
+                        </div>
+                        <div class="bg-gradient-to-r from-primary/20 to-primary/40 rounded-lg p-4 text-center">
+                            <div class="font-semibold text-gray-900">Koramangala</div>
+                            <div class="text-sm text-gray-600">Stable</div>
+                            <div class="text-lg font-bold text-primary mt-1">+6.3%</div>
+                        </div>
+                        <div class="bg-gradient-to-r from-danger/20 to-danger/40 rounded-lg p-4 text-center">
+                            <div class="font-semibold text-gray-900">Sarjapur</div>
+                            <div class="text-sm text-gray-600">Declining</div>
+                            <div class="text-lg font-bold text-danger mt-1">-2.1%</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button class="text-primary hover:text-primary-dark font-medium">
+                            View Full Heat Map →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Insights Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="bg-success/10 p-3 rounded-lg">
+                            <i class="fas fa-trending-up text-success text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Best Time to Buy</h4>
+                            <p class="text-sm text-gray-600">Q4 2024 Analysis</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">
+                        Current market conditions favor buyers with increased inventory and stable pricing. Pre-launch offers provide 10-15% savings.
+                    </p>
+                    <button class="text-primary hover:text-primary-dark font-medium text-sm">
+                        Read Full Report →
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="bg-warning/10 p-3 rounded-lg">
+                            <i class="fas fa-chart-pie text-warning text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Investment Hotspots</h4>
+                            <p class="text-sm text-gray-600">Top 5 Areas</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>Whitefield</span>
+                            <span class="text-success font-medium">★★★★★</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Sarjapur</span>
+                            <span class="text-success font-medium">★★★★☆</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Hebbal</span>
+                            <span class="text-warning font-medium">★★★☆☆</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="bg-primary/10 p-3 rounded-lg">
+                            <i class="fas fa-calculator text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">ROI Calculator</h4>
+                            <p class="text-sm text-gray-600">Estimate Returns</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">5-Year Appreciation</span>
+                            <span class="font-medium">45-65%</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Rental Yield</span>
+                            <span class="font-medium">2.5-4.2%</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark">
+                            Calculate My ROI
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: MarketIntelligence -->
+
+    <!-- @COMPONENT: TrustedBuilders [builder profiles with verification badges] -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Verified Builders</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Connect directly with RERA-verified builders for transparent deals and faster closures
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Builder Card 1 -->
+                <div class="bg-white border-2 border-gray-200 hover:border-primary rounded-2xl p-6 text-center transition-colors cursor-pointer">
+                    <div class="relative w-16 h-16 mx-auto mb-4">
+                        <!-- Professional office building representing real estate company -->
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200" 
+                             alt="Modern office building" class="w-16 h-16 rounded-full object-cover" />
+                        <div class="absolute -top-1 -right-1 bg-success rounded-full p-1">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Prestige Group</h3>
+                    <div class="flex items-center justify-center space-x-1 mb-3">
+                        <div class="flex text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">(4.8)</span>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <div class="flex items-center justify-center space-x-1">
+                            <i class="fas fa-building text-primary"></i>
+                            <span>125+ Projects</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-1">
+                            <i class="fas fa-clock text-success"></i>
+                            <span>15 min response</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-primary-dark">
+                            View Projects
+                        </button>
+                        <button class="bg-gray-100 text-gray-700 p-2 rounded-lg hover:bg-gray-200">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Builder Card 2 -->
+                <div class="bg-white border-2 border-gray-200 hover:border-primary rounded-2xl p-6 text-center transition-colors cursor-pointer">
+                    <div class="relative w-16 h-16 mx-auto mb-4">
+                        <!-- Corporate headquarters building with glass facade -->
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200" 
+                             alt="Corporate building" class="w-16 h-16 rounded-full object-cover" />
+                        <div class="absolute -top-1 -right-1 bg-success rounded-full p-1">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">DLF Limited</h3>
+                    <div class="flex items-center justify-center space-x-1 mb-3">
+                        <div class="flex text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">(4.6)</span>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <div class="flex items-center justify-center space-x-1">
+                            <i class="fas fa-building text-primary"></i>
+                            <span>200+ Projects</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-1">
+                            <i class="fas fa-clock text-success"></i>
+                            <span>20 min response</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-primary-dark">
+                            View Projects
+                        </button>
+                        <button class="bg-gray-100 text-gray-700 p-2 rounded-lg hover:bg-gray-200">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Builder Card 3 -->
+                <div class="bg-white border-2 border-gray-200 hover:border-primary rounded-2xl p-6 text-center transition-colors cursor-pointer">
+                    <div class="relative w-16 h-16 mx-auto mb-4">
+                        <!-- Modern commercial complex with contemporary architecture -->
+                        <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200" 
+                             alt="Modern commercial complex" class="w-16 h-16 rounded-full object-cover" />
+                        <div class="absolute -top-1 -right-1 bg-success rounded-full p-1">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Godrej Properties</h3>
+                    <div class="flex items-center justify-center space-x-1 mb-3">
+                        <div class="flex text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">(4.9)</span>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <div class="flex items-center justify-center space-x-1">
+                            <i class="fas fa-building text-primary"></i>
+                            <span>90+ Projects</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-1">
+                            <i class="fas fa-clock text-success"></i>
+                            <span>12 min response</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-primary-dark">
+                            View Projects
+                        </button>
+                        <button class="bg-gray-100 text-gray-700 p-2 rounded-lg hover:bg-gray-200">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Builder Card 4 -->
+                <div class="bg-white border-2 border-gray-200 hover:border-primary rounded-2xl p-6 text-center transition-colors cursor-pointer">
+                    <div class="relative w-16 h-16 mx-auto mb-4">
+                        <!-- Sleek business tower with contemporary design -->
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200" 
+                             alt="Business tower" class="w-16 h-16 rounded-full object-cover" />
+                        <div class="absolute -top-1 -right-1 bg-success rounded-full p-1">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Brigade Group</h3>
+                    <div class="flex items-center justify-center space-x-1 mb-3">
+                        <div class="flex text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-600">(4.5)</span>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <div class="flex items-center justify-center space-x-1">
+                            <i class="fas fa-building text-primary"></i>
+                            <span>75+ Projects</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-1">
+                            <i class="fas fa-clock text-success"></i>
+                            <span>18 min response</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-primary-dark">
+                            View Projects
+                        </button>
+                        <button class="bg-gray-100 text-gray-700 p-2 rounded-lg hover:bg-gray-200">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 rounded-lg font-medium">
+                    View All Verified Builders
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: TrustedBuilders -->
+
+    <!-- @COMPONENT: AIAssistant [chat interface for property queries] -->
+    <section class="py-16 bg-gradient-to-br from-primary/5 to-accent/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">ZyloAI Assistant</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Get instant answers about properties, market trends, and investment advice
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <!-- Chat Header -->
+                <div class="bg-gradient-to-r from-primary to-primary-dark p-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-white/20 rounded-full p-2">
+                            <i class="fas fa-robot text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold">ZyloAI Assistant</h3>
+                            <p class="text-blue-100 text-sm">Online • Ready to help</p>
+                        </div>
+                        <div class="ml-auto flex items-center space-x-2">
+                            <span class="bg-success text-white text-xs px-2 py-1 rounded-full">MULTILINGUAL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="p-6 h-96 overflow-y-auto">
+                    <!-- AI Message -->
+                    <div class="flex items-start space-x-3 mb-6">
+                        <div class="bg-primary rounded-full p-2">
+                            <i class="fas fa-robot text-white text-sm"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-gray-100 rounded-2xl p-4">
+                                <p class="text-gray-800">
+                                    Hello! I'm ZyloAI, your property advisor. I can help you with:
+                                </p>
+                                <ul class="mt-3 space-y-2 text-sm text-gray-600">
+                                    <li>• Property search and comparisons</li>
+                                    <li>• Market trends and pricing analysis</li>
+                                    <li>• RERA verification and legal checks</li>
+                                    <li>• Investment advice and ROI calculations</li>
+                                </ul>
+                                <p class="mt-3 text-gray-800">
+                                    What would you like to know about real estate today?
+                                </p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Just now</div>
+                        </div>
+                    </div>
+
+                    <!-- Sample User Query -->
+                    <div class="flex items-start space-x-3 mb-6 justify-end">
+                        <div class="flex-1 text-right">
+                            <div class="bg-primary text-white rounded-2xl p-4 inline-block">
+                                <p>I'm looking for a 3BHK apartment in Bangalore under ₹2 crores. Can you suggest some good options?</p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">2 min ago</div>
+                        </div>
+                        <div class="bg-gray-200 rounded-full p-2">
+                            <i class="fas fa-user text-gray-600 text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- AI Response -->
+                    <div class="flex items-start space-x-3 mb-6">
+                        <div class="bg-primary rounded-full p-2">
+                            <i class="fas fa-robot text-white text-sm"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-gray-100 rounded-2xl p-4">
+                                <p class="text-gray-800 mb-3">
+                                    Great choice! I found <strong>3 excellent options</strong> for 3BHK apartments under ₹2Cr in Bangalore:
+                                </p>
+                                
+                                <div class="space-y-3">
+                                    <div class="bg-white rounded-lg p-3 border-l-4 border-success">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Prestige Lakeside Habitat</h4>
+                                                <p class="text-sm text-gray-600">Whitefield • ₹1.2Cr • Credibility: 92/100</p>
+                                            </div>
+                                            <button class="text-primary text-sm font-medium">View Details</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white rounded-lg p-3 border-l-4 border-warning">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Brigade Cornerstone Utopia</h4>
+                                                <p class="text-sm text-gray-600">Varthur • ₹1.8Cr • Credibility: 89/100</p>
+                                            </div>
+                                            <button class="text-primary text-sm font-medium">View Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="mt-3 text-gray-800">
+                                    Would you like me to compare these properties or get more details about any specific one?
+                                </p>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">1 min ago</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="border-t border-gray-200 p-4">
+                    <div class="flex space-x-3">
+                        <div class="flex-1 relative">
+                            <input type="text" 
+                                   placeholder="Ask me anything about real estate..." 
+                                   class="w-full p-3 pr-12 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                   data-mock="true" />
+                            <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                        <button class="bg-primary hover:bg-primary-dark text-white p-3 rounded-2xl">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <div class="flex space-x-4 text-sm text-gray-500">
+                            <button class="hover:text-primary">हिंदी में बात करें</button>
+                            <button class="hover:text-primary">Voice Search</button>
+                            <button class="hover:text-primary">Upload Documents</button>
+                        </div>
+                        <div class="text-xs text-gray-400">
+                            Powered by ZyloAI • Always learning
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                <button class="bg-white hover:bg-gray-50 p-4 rounded-xl shadow-lg text-center transition-colors">
+                    <i class="fas fa-search text-primary text-2xl mb-2"></i>
+                    <div class="font-medium text-gray-900">Property Search</div>
+                </button>
+                <button class="bg-white hover:bg-gray-50 p-4 rounded-xl shadow-lg text-center transition-colors">
+                    <i class="fas fa-chart-line text-success text-2xl mb-2"></i>
+                    <div class="font-medium text-gray-900">Market Analysis</div>
+                </button>
+                <button class="bg-white hover:bg-gray-50 p-4 rounded-xl shadow-lg text-center transition-colors">
+                    <i class="fas fa-balance-scale text-warning text-2xl mb-2"></i>
+                    <div class="font-medium text-gray-900">Legal Check</div>
+                </button>
+                <button class="bg-white hover:bg-gray-50 p-4 rounded-xl shadow-lg text-center transition-colors">
+                    <i class="fas fa-calculator text-accent text-2xl mb-2"></i>
+                    <div class="font-medium text-gray-900">ROI Calculator</div>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: AIAssistant -->
+
+    <!-- @COMPONENT: Footer [company info, links, compliance notices] -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-home text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold">ZyloEstates</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        India's first AI-powered direct-to-builder real estate platform. Transparent, verified, and commission-free.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Buy Property</a></li>
+                        <li><a href="#" class="hover:text-white">Featured Projects</a></li>
+                        <li><a href="#" class="hover:text-white">Verified Builders</a></li>
+                        <li><a href="#" class="hover:text-white">Market Intelligence</a></li>
+                        <li><a href="#" class="hover:text-white">Legal Services</a></li>
+                        <li><a href="#" class="hover:text-white">Investment Guide</a></li>
+                    </ul>
+                </div>
+
+                <!-- Cities -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Cities</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Mumbai</a></li>
+                        <li><a href="#" class="hover:text-white">Delhi NCR</a></li>
+                        <li><a href="#" class="hover:text-white">Bangalore</a></li>
+                        <li><a href="#" class="hover:text-white">Chennai</a></li>
+                        <li><a href="#" class="hover:text-white">Hyderabad</a></li>
+                        <li><a href="#" class="hover:text-white">Pune</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Compliance -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact & Support</h3>
+                    <div class="space-y-3 text-gray-400 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone text-primary"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span>support@zyloestates.com</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fab fa-whatsapp text-success"></i>
+                            <span>WhatsApp Support</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="font-medium mb-2">Compliance</h4>
+                        <div class="space-y-1 text-xs text-gray-500">
+                            <p>RERA Registered Platform</p>
+                            <p>ISO 27001 Certified</p>
+                            <p>GDPR & Privacy Compliant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-gray-400 text-sm">
+                        © 2024 ZyloEstates. All rights reserved.
+                    </div>
+                    <div class="flex space-x-6 text-sm text-gray-400">
+                        <a href="#" class="hover:text-white">Privacy Policy</a>
+                        <a href="#" class="hover:text-white">Terms of Service</a>
+                        <a href="#" class="hover:text-white">RERA Compliance</a>
+                        <a href="#" class="hover:text-white">Disclaimer</a>
+                    </div>
+                </div>
+                
+                <!-- Trust Badges -->
+                <div class="flex items-center justify-center space-x-6 mt-6 pt-6 border-t border-gray-800">
+                    <div class="flex items-center space-x-2 text-xs text-gray-500">
+                        <i class="fas fa-shield-alt text-success"></i>
+                        <span>SSL Secured</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs text-gray-500">
+                        <i class="fas fa-check-circle text-success"></i>
+                        <span>RERA Verified</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs text-gray-500">
+                        <i class="fas fa-award text-warning"></i>
+                        <span>ISO Certified</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs text-gray-500">
+                        <i class="fas fa-lock text-primary"></i>
+                        <span>Bank Grade Security</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <!-- Sticky Compare Bar (Hidden by default, shows when properties are selected) -->
+    <div id="compareBar" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl z-40 transform translate-y-full transition-transform duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <span class="font-semibold text-gray-900">Compare Properties</span>
+                    <span class="bg-primary text-white text-sm px-2 py-1 rounded-full">3 selected</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg font-medium">
+                        Compare Now
+                    </button>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // TODO: Implement business logic, API calls, or state management
+        (function() {
+            // Simple demo functionality for interactive elements
+            
+            // Mobile menu toggle (if needed)
+            const mobileMenuButton = document.querySelector('[data-mobile-menu]');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    // Toggle mobile menu
+                });
+            }
+
+            // Heart/favorite toggles
+            document.querySelectorAll('.fas.fa-heart').forEach(heart => {
+                heart.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('text-red-500');
+                    this.classList.toggle('text-gray-400');
+                });
+            });
+
+            // Chat input simulation
+            const chatInput = document.querySelector('input[placeholder*="Ask me anything"]');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        // Simulate sending message
+                        console.log('Message sent:', this.value);
+                        this.value = '';
+                    }
+                });
+            }
+
+            // Property comparison demo
+            let selectedProperties = 0;
+            const compareBar = document.getElementById('compareBar');
+            
+            document.querySelectorAll('.property-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    selectedProperties++;
+                    if (selectedProperties > 0 && compareBar) {
+                        compareBar.classList.remove('translate-y-full');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
